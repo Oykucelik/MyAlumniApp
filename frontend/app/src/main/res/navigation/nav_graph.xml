@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.alumniapp.ui.splash.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.alumniapp.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.alumniapp.ui.auth.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.alumniapp.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="isFirstLogin"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.alumniapp.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_alumniListFragment"
+            app:destination="@id/alumniListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventsFragment"
+            app:destination="@id/eventsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_jobsFragment"
+            app:destination="@id/jobsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mentorshipFragment"
+            app:destination="@id/mentorshipFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/alumniListFragment"
+        android:name="com.example.alumniapp.ui.alumni.AlumniListFragment"
+        android:label="Alumni"
+        tools:layout="@layout/fragment_alumni_list">
+        <action
+            android:id="@+id/action_alumniListFragment_to_alumniDetailFragment"
+            app:destination="@id/alumniDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/alumniDetailFragment"
+        android:name="com.example.alumniapp.ui.alumni.AlumniDetailFragment"
+        android:label="Alumni Detail"
+        tools:layout="@layout/fragment_alumni_detail">
+        <argument
+            android:name="alumniId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.example.alumniapp.ui.events.EventsFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_events">
+        <action
+            android:id="@+id/action_eventsFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.alumniapp.ui.events.EventDetailFragment"
+        android:label="Event Detail"
+        tools:layout="@layout/fragment_event_detail">
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/jobsFragment"
+        android:name="com.example.alumniapp.ui.jobs.JobsFragment"
+        android:label="Jobs"
+        tools:layout="@layout/fragment_jobs">
+        <action
+            android:id="@+id/action_jobsFragment_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/jobDetailFragment"
+        android:name="com.example.alumniapp.ui.jobs.JobDetailFragment"
+        android:label="Job Detail"
+        tools:layout="@layout/fragment_job_detail">
+        <argument
+            android:name="jobId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mentorshipFragment"
+        android:name="com.example.alumniapp.ui.mentorship.MentorshipFragment"
+        android:label="Mentorships"
+        tools:layout="@layout/fragment_mentorship">
+        <action
+            android:id="@+id/action_mentorshipFragment_to_mentorshipDetailFragment"
+            app:destination="@id/mentorshipDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mentorshipDetailFragment"
+        android:name="com.example.alumniapp.ui.mentorship.MentorshipDetailFragment"
+        android:label="Mentorship Detail"
+        tools:layout="@layout/fragment_mentorship_detail">
+        <argument
+            android:name="mentorshipId"
+            app:argType="string" />
+    </fragment>
+    
+    <!-- New Fragments -->
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.alumniapp.ui.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications" />
+        
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.alumniapp.ui.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+        
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.alumniapp.ui.chat.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+
+</navigation> 

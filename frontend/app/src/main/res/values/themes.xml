@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AlumniApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/pink_primary</item>
+        <item name="colorPrimaryDark">@color/pink_primary_dark</item>
+        <item name="colorAccent">@color/pink_accent</item>
+        <item name="android:colorBackground">@color/pink_light</item>
+        <item name="android:textColorPrimary">@color/pink_text</item>
+        <item name="colorControlActivated">@color/pink_primary</item>
+        <item name="colorControlNormal">@color/pink_primary_dark</item>
+    </style>
+
+    <style name="Theme.AlumniApp" parent="Base.Theme.AlumniApp" />
+    
+    <!-- Style for buttons in auth screens -->
+    <style name="PinkButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/pink_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+    
+    <!-- Style for text input layouts -->
+    <style name="PinkTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/pink_primary</item>
+        <item name="hintTextColor">@color/pink_primary_dark</item>
+        <item name="boxBackgroundColor">@color/pink_input_bg</item>
+    </style>
+</resources>
