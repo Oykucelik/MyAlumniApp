@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.events.EventDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/event_detail_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:titleTextColor="?attr/colorOnPrimary"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/event_detail_image"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            app:layout_constraintTop_toBottomOf="@id/event_detail_toolbar" 
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="Event Image"
+            android:layout_marginTop="0dp"/>
+
+        <TextView
+            android:id="@+id/event_detail_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            tools:text="Annual Alumni Gala Dinner"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <TextView
+            android:id="@+id/event_detail_date_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Date &amp; Time:"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:id="@+id/event_detail_date_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            tools:text="Sat, 25 Dec 2023 - 07:00 PM"
+            app:layout_constraintTop_toTopOf="@+id/event_detail_date_time_label"
+            app:layout_constraintBottom_toBottomOf="@+id/event_detail_date_time_label"
+            app:layout_constraintStart_toEndOf="@+id/event_detail_date_time_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingEnd="16dp" />
+
+        <TextView
+            android:id="@+id/event_detail_location_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Location:"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_date_time_label"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:id="@+id/event_detail_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            tools:text="Grand Ballroom, Hilton Hotel"
+            app:layout_constraintTop_toTopOf="@+id/event_detail_location_label"
+            app:layout_constraintBottom_toBottomOf="@+id/event_detail_location_label"
+            app:layout_constraintStart_toEndOf="@+id/event_detail_location_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingEnd="16dp" />
+
+        <TextView
+            android:id="@+id/event_detail_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="About this event:"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_location_label"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="16dp" />
+
+        <TextView
+            android:id="@+id/event_detail_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            tools:text="Join us for a night of celebration, networking, and reconnecting with fellow alumni. Dress code: Formal. This is a longer description to see how it wraps and fills the space. We hope to see many familiar faces and make new connections. The evening will feature a keynote speaker, awards, and live entertainment. Please RSVP by August 1st."
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_description_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" 
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView> 

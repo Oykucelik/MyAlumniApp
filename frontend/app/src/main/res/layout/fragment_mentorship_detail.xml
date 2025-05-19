@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mentorshipdetail.MentorshipDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/detailMentorImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="Mentor Image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/detailMentorNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detailMentorImageView"
+            app:layout_constraintTop_toTopOf="@id/detailMentorImageView"
+            tools:text="Mentor Name" />
+
+        <TextView
+            android:id="@+id/detailMentorshipTopicTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/detailMentorNameTextView"
+            app:layout_constraintTop_toBottomOf="@id/detailMentorNameTextView"
+            tools:text="Mentorship Topic" />
+
+        <TextView
+            android:id="@+id/detailMentorshipStatusLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Status:"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMentorImageView" />
+        
+        <TextView
+            android:id="@+id/detailMentorshipStatusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintStart_toEndOf="@id/detailMentorshipStatusLabelTextView"
+            app:layout_constraintTop_toTopOf="@id/detailMentorshipStatusLabelTextView"
+            tools:text="Available" />
+
+        <TextView
+            android:id="@+id/detailMentorshipDescriptionLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Description:"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMentorshipStatusLabelTextView" />
+
+        <TextView
+            android:id="@+id/detailMentorshipDescriptionTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMentorshipDescriptionLabelTextView"
+            tools:text="Detailed description of the mentorship program, covering goals, curriculum, expected outcomes, and any prerequisites for mentees. This section can be quite long and provide comprehensive information." />
+
+        <TextView
+            android:id="@+id/detailMentorshipDurationLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Duration:"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMentorshipDescriptionTextView" />
+
+        <TextView
+            android:id="@+id/detailMentorshipDurationTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detailMentorshipDurationLabelTextView"
+            app:layout_constraintTop_toTopOf="@id/detailMentorshipDurationLabelTextView"
+            tools:text="August 1, 2024 - December 31, 2024" />
+
+        <TextView
+            android:id="@+id/detailMenteeNameLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Mentee:"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailMentorshipDurationTextView" />
+
+        <TextView
+            android:id="@+id/detailMenteeNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detailMenteeNameLabelTextView"
+            app:layout_constraintTop_toTopOf="@id/detailMenteeNameLabelTextView"
+            tools:text="Charlie Brown" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView> 

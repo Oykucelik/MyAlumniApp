@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AlumniApp</string>
+    <string name="title_mentorships">Mentorships</string>
+    <string name="title_mentorship_detail">Mentorship Detail</string>
 </resources>

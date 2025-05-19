@@ -208,4 +208,156 @@ def delete_user(user_id):
     
     except Exception as e:
         db.session.rollback()
+        return APIResponse.error_response(str(e), status_code=500)
+
+
+@users_bp.route('/alumni/search', methods=['GET'])
+@jwt_required()
+def search_alumni():
+    """
+    Search for alumni users with filtering options
+    
+    Query parameters:
+    - name: Search by first name or last name
+    - university: Filter by university
+    - department: Filter by department
+    - industry: Filter by industry
+    - position: Filter by position/job title
+    - page: Page number (default: 1)
+    - per_page: Results per page (default: 20, max: 50)
+    """
+    # Get query parameters
+    name = request.args.get('name', '')
+    university = request.args.get('university')
+    department = request.args.get('department')
+    industry = request.args.get('industry')
+    position = request.args.get('position')
+    page = int(request.args.get('page', 1))
+    per_page = min(int(request.args.get('per_page', 20)), 50)
+    
+    # Base query: get alumni users
+    query = User.query.filter_by(user_type='alumni')
+    
+    # Apply name search filter if provided
+    if name:
+        search_term = f'%{name}%'
+        query = query.filter(
+            (User.first_name.ilike(search_term)) | 
+            (User.last_name.ilike(search_term))
+        )
+    
+    # Apply additional filters that require joining with Profile
+    if university or department or industry or position:
+        query = query.join(Profile)
+        
+        if university:
+            query = query.filter(Profile.university.ilike(f'%{university}%'))
+        
+        if department:
+            query = query.filter(Profile.department.ilike(f'%{department}%'))
+        
+        if industry:
+            query = query.filter(Profile.industry.ilike(f'%{industry}%'))
+        
+        if position:
+            query = query.filter(Profile.position.ilike(f'%{position}%'))
+    
+    # Execute paginated query
+    users_pagination = query.paginate(page=page, per_page=per_page, error_out=False)
+    users = users_pagination.items
+    
+    # Format response
+    users_data = []
+    for user in users:
+        user_data = {
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'full_name': user.full_name,
+            'profile_picture': user.profile.profile_picture if user.profile else None
+        }
+        
+        if user.profile:
+            user_data.update({
+                'university': user.profile.university,
+                'department': user.profile.department,
+                'industry': user.profile.industry,
+                'position': user.profile.position,
+                'is_mentor': user.profile.is_mentor
+            })
+        
+        users_data.append(user_data)
+    
+    return APIResponse.success_response(
+        data={
+            'users': users_data,
+            'pagination': {
+                'total': users_pagination.total,
+                'pages': users_pagination.pages,
+                'page': page,
+                'per_page': per_page
+            },
+            'filters': {
+                'name': name,
+                'university': university,
+                'department': department,
+                'industry': industry,
+                'position': position
+            }
+        }
+    )
+
+
+@users_bp.route('/alumni/filter-options', methods=['GET'])
+@jwt_required()
+def get_alumni_filter_options():
+    """
+    Get available filter options for alumni search
+    
+    Returns lists of universities, departments, industries, and positions
+    that are used by alumni in the system
+    """
+    try:
+        # Query distinct values from profiles of alumni users
+        universities_query = db.session.query(Profile.university).join(User).filter(
+            User.user_type == 'alumni',
+            Profile.university.isnot(None),
+            Profile.university != ''
+        ).distinct().order_by(Profile.university)
+        
+        departments_query = db.session.query(Profile.department).join(User).filter(
+            User.user_type == 'alumni',
+            Profile.department.isnot(None),
+            Profile.department != ''
+        ).distinct().order_by(Profile.department)
+        
+        industries_query = db.session.query(Profile.industry).join(User).filter(
+            User.user_type == 'alumni',
+            Profile.industry.isnot(None),
+            Profile.industry != ''
+        ).distinct().order_by(Profile.industry)
+        
+        positions_query = db.session.query(Profile.position).join(User).filter(
+            User.user_type == 'alumni',
+            Profile.position.isnot(None),
+            Profile.position != ''
+        ).distinct().order_by(Profile.position)
+        
+        # Convert query results to lists
+        universities = [u[0] for u in universities_query.all()]
+        departments = [d[0] for d in departments_query.all()]
+        industries = [i[0] for i in industries_query.all()]
+        positions = [p[0] for p in positions_query.all()]
+        
+        return APIResponse.success_response(
+            data={
+                'filter_options': {
+                    'universities': universities,
+                    'departments': departments,
+                    'industries': industries,
+                    'positions': positions
+                }
+            }
+        )
+    except Exception as e:
         return APIResponse.error_response(str(e), status_code=500) 

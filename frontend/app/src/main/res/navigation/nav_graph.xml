@@ -148,24 +148,24 @@
         android:label="Jobs"
         tools:layout="@layout/fragment_jobs">
         <action
-            android:id="@+id/action_jobsFragment_to_jobDetailFragment"
-            app:destination="@id/jobDetailFragment" />
+            android:id="@+id/action_jobsFragment_to_jobDetailsFragment"
+            app:destination="@id/jobDetailsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/jobDetailFragment"
-        android:name="com.example.alumniapp.ui.jobs.JobDetailFragment"
-        android:label="Job Detail"
-        tools:layout="@layout/fragment_job_detail">
+        android:id="@+id/jobDetailsFragment"
+        android:name="com.example.alumniapp.ui.jobs.JobDetailsFragment"
+        android:label="JobDetailsFragment"
+        tools:layout="@layout/fragment_job_details">
         <argument
-            android:name="jobId"
-            app:argType="string" />
+            android:name="job"
+            app:argType="com.example.alumniapp.data.model.Job" />
     </fragment>
 
     <fragment
         android:id="@+id/mentorshipFragment"
         android:name="com.example.alumniapp.ui.mentorship.MentorshipFragment"
-        android:label="Mentorships"
+        android:label="@string/title_mentorships"
         tools:layout="@layout/fragment_mentorship">
         <action
             android:id="@+id/action_mentorshipFragment_to_mentorshipDetailFragment"
@@ -174,12 +174,12 @@
 
     <fragment
         android:id="@+id/mentorshipDetailFragment"
-        android:name="com.example.alumniapp.ui.mentorship.MentorshipDetailFragment"
-        android:label="Mentorship Detail"
+        android:name="com.example.alumniapp.ui.mentorshipdetail.MentorshipDetailFragment"
+        android:label="@string/title_mentorship_detail"
         tools:layout="@layout/fragment_mentorship_detail">
         <argument
-            android:name="mentorshipId"
-            app:argType="string" />
+            android:name="mentorship"
+            app:argType="com.example.alumniapp.data.model.Mentorship" />
     </fragment>
     
     <!-- New Fragments -->
@@ -193,12 +193,39 @@
         android:id="@+id/searchFragment"
         android:name="com.example.alumniapp.ui.search.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_alumniListFragment"
+            app:destination="@id/alumniListFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_eventsFragment"
+            app:destination="@id/eventsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_jobsFragment"
+            app:destination="@id/jobsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_mentorshipFragment"
+            app:destination="@id/mentorshipFragment" />
+    </fragment>
         
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.alumniapp.ui.chat.ChatFragment"
         android:label="Chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat">
+        <action
+            android:id="@+id/action_chatFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatDetailFragment"
+        android:name="com.example.alumniapp.ui.chat.ChatDetailFragment"
+        android:label="Chat Detail"
+        tools:layout="@layout/fragment_chat_detail">
+        <argument
+            android:name="chatId"
+            app:argType="string" />
+    </fragment>
 
 </navigation> 

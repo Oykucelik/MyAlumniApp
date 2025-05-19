@@ -4,84 +4,86 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.alumniapp.R
-import com.example.alumniapp.databinding.FragmentHomeBinding
-import com.example.alumniapp.viewmodel.AuthViewModel
-import com.example.alumniapp.viewmodel.ProfileViewModel
+import com.example.alumniapp.adapter.PostAdapter
+import com.example.alumniapp.model.Post
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
-    
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    
-    private lateinit var authViewModel: AuthViewModel
-    private lateinit var profileViewModel: ProfileViewModel
-    
+
+    private lateinit var recyclerViewPosts: RecyclerView
+    private lateinit var postAdapter: PostAdapter
+    private lateinit var fabAddPost: FloatingActionButton
+    private val postsList = mutableListOf<Post>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        recyclerViewPosts = view.findViewById(R.id.recyclerViewPosts)
+        fabAddPost = view.findViewById(R.id.fabAddPost)
+
+        setupRecyclerView()
+        loadDummyPosts()
+
+        fabAddPost.setOnClickListener {
+            // Handle FAB click - e.g., navigate to a create post screen
+            Toast.makeText(context, "Add new post clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        return view
     }
-    
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        authViewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
-        profileViewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
-        
-        setupListeners()
-        
-        // Load profile data to display welcome message
-        profileViewModel.fetchProfile()
-        
-        // Observe profile data changes
-        profileViewModel.profileData.observe(viewLifecycleOwner) { resource ->
-            when (resource) {
-                is com.example.alumniapp.utils.Resource.Success -> {
-                    // Show welcome with user name
-                    binding.welcomeText.text = "Welcome, ${resource.data.first_name}!"
-                }
-                is com.example.alumniapp.utils.Resource.Loading -> {
-                    // Show loading state if needed
-                }
-                is com.example.alumniapp.utils.Resource.Error -> {
-                    // Handle error if needed
-                    binding.welcomeText.text = "Welcome!"
-                }
-            }
+
+    private fun setupRecyclerView() {
+        postAdapter = PostAdapter(postsList)
+        recyclerViewPosts.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = postAdapter
         }
     }
-    
-    private fun setupListeners() {
-        // Alumni section button
-        binding.exploreAlumniButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_alumniListFragment)
-        }
-        
-        // Events button
-        binding.viewEventsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_eventsFragment)
-        }
-        
-        // Jobs button
-        binding.viewJobsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_jobsFragment)
-        }
-        
-        // Mentorship button
-        binding.mentorshipButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_mentorshipFragment)
-        }
-    }
-    
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+
+    private fun loadDummyPosts() {
+        // Create some dummy posts
+        // In a real app, you would fetch this data from a ViewModel, repository, or API
+        postsList.add(
+            Post(
+                id = "1",
+                username = "Alice Wonderland",
+                location = "New York, USA",
+                avatarUrl = null, // Or a URL to an image
+                imageUrl = "placeholder_image_url_1", // Replace with actual image URLs or resource IDs
+                description = "Having a great time exploring the city! Loving the views and the food. #travel #nyc"
+            )
+        )
+        postsList.add(
+            Post(
+                id = "2",
+                username = "Bob The Builder",
+                location = "London, UK",
+                avatarUrl = null,
+                imageUrl = "placeholder_image_url_2",
+                description = "Just finished a new project. It was challenging but rewarding. #construction #architecture"
+            )
+        )
+        postsList.add(
+            Post(
+                id = "3",
+                username = "Charlie Brown",
+                location = "Springfield, USA",
+                avatarUrl = null,
+                imageUrl = "placeholder_image_url_3",
+                description = "Good grief! Another beautiful day. Spending time with Snoopy. #comics #classic #doglover"
+            )
+        )
+
+        postAdapter.notifyDataSetChanged() 
     }
 }

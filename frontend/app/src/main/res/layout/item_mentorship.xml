@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/mentorImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="Mentor Image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/mentorNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toEndOf="@id/mentorImageView"
+            app:layout_constraintTop_toTopOf="@id/mentorImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Mentor Name" />
+
+        <TextView
+            android:id="@+id/mentorshipTopicTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintStart_toStartOf="@id/mentorNameTextView"
+            app:layout_constraintTop_toBottomOf="@id/mentorNameTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Mentorship Topic" />
+
+        <TextView
+            android:id="@+id/mentorshipStatusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:background="@drawable/status_background_available" 
+            app:layout_constraintStart_toStartOf="@id/mentorNameTextView"
+            app:layout_constraintTop_toBottomOf="@id/mentorshipTopicTextView"
+            tools:text="Available" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView> 

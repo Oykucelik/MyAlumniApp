@@ -26,4 +26,17 @@
         <item name="hintTextColor">@color/pink_primary_dark</item>
         <item name="boxBackgroundColor">@color/pink_input_bg</item>
     </style>
+
+    <style name="Theme.AlumniApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AlumniApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/pink_primary_dark</item>
+        <!-- For title text color on a light toolbar -->
+        <item name="android:textColorPrimary">@color/pink_text</item> 
+    </style>
+
+    <style name="Theme.AlumniApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

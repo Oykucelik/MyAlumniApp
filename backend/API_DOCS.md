@@ -531,4 +531,99 @@ Common error codes:
 - `403 Forbidden`: Authenticated but not allowed to access the resource
 - `404 Not Found`: Resource not found
 - `409 Conflict`: Resource already exists
-- `500 Internal Server Error`: Server-side error 
+- `500 Internal Server Error`: Server-side error
+
+## Users
+
+### Search Alumni
+
+**Endpoint:** `GET /users/alumni/search`
+
+**Query Parameters:**
+- `name`: Search by first name or last name
+- `university`: Filter by university
+- `department`: Filter by department 
+- `industry`: Filter by industry
+- `position`: Filter by position/job title
+- `page`: Page number (default: 1)
+- `per_page`: Results per page (default: 20, max: 50)
+
+**Response:**
+```json
+{
+  "data": {
+    "users": [
+      {
+        "id": 2,
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "full_name": "Jane Smith",
+        "profile_picture": "https://example.com/profile_pictures/jane.jpg",
+        "university": "Stanford",
+        "department": "Marketing",
+        "industry": "Marketing",
+        "position": "Marketing Director",
+        "is_mentor": true
+      },
+      {
+        "id": 3,
+        "first_name": "John",
+        "last_name": "Doe",
+        "full_name": "John Doe",
+        "profile_picture": "https://example.com/profile_pictures/john.jpg",
+        "university": "MIT",
+        "department": "Computer Science",
+        "industry": "Technology",
+        "position": "Senior Software Engineer",
+        "is_mentor": true
+      }
+    ],
+    "pagination": {
+      "total": 2,
+      "pages": 1,
+      "page": 1,
+      "per_page": 20
+    },
+    "filters": {
+      "name": "Smith",
+      "university": null,
+      "department": null,
+      "industry": null,
+      "position": null
+    }
+  }
+} 
+```
+
+### Get Alumni Filter Options
+
+**Endpoint:** `GET /users/alumni/filter-options`
+
+**Response:**
+```json
+{
+  "data": {
+    "filter_options": {
+      "universities": [
+        "Harvard",
+        "MIT",
+        "Stanford"
+      ],
+      "departments": [
+        "Business",
+        "Computer Science",
+        "Marketing"
+      ],
+      "industries": [
+        "Finance",
+        "Marketing",
+        "Technology"
+      ],
+      "positions": [
+        "Marketing Director",
+        "Product Manager",
+        "Senior Software Engineer"
+      ]
+    }
+  }
+}
